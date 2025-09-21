@@ -7,13 +7,15 @@ import requests
 
 from api import get_token
 
-playlistThumbs = "playlistThumbs"
+playlistThumbs = os.path.join(os.getcwd(), "playlistThumbs")
 if not os.path.exists(playlistThumbs):
     os.mkdir(playlistThumbs)
 
 cache = os.getenv("TRI_CACHE", os.path.join(os.getcwd(), "TRICACHE")) # cache MUST exist
-lists = "lists" # where the lists'll go
+lists = os.path.join(os.getcwd(), "lists") # where the lists'll go
 
+if not os.path.exists(lists):
+    os.mkdir(lists)
 
 def slugify(value, allow_unicode=True):
     value = str(value)
@@ -24,20 +26,17 @@ def slugify(value, allow_unicode=True):
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return value
 
-if not os.path.exists(lists):
-    os.mkdir(lists)
-
 def getImgUrl(playlistId):
-    if playlistId:
+    if playlistId is not None:
         file = os.path.join(playlistThumbs, playlistId+".jpg")
-    if playlistId and not os.path.exists(file):
-        with open(file, 'wb+') as f:
-            xd = requests.get(f'https://api.spotify.com/v1/playlists/{playlistId}', headers={"Authorization": f"Bearer {get_token()}"}).json()
-            if 'images' in xd:
-                imgs = xd['images'] 
-                if not imgs or len(imgs) == 0:
-                    return None
-                f.write(requests.get(imgs[0]['url']).content)
+        if not os.path.exists(file):
+            with open(file, 'wb+') as f:
+                xd = requests.get(f'https://api.spotify.com/v1/playlists/{playlistId}', headers={"Authorization": f"Bearer {get_token()}"}).json()
+                if 'images' in xd:
+                    imgs = xd['images'] 
+                    if not imgs or len(imgs) == 0:
+                        return None
+                    f.write(requests.get(imgs[0]['url']).content)
         return file
 
 def savePlaylist(songs, title, id, filePath):
