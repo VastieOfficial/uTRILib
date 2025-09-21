@@ -1,0 +1,5 @@
+requests==2.32.3
+aiofiles==24.1.0
+aiohttp==3.12.15
+crawler-user-agents==1.21.0
+mutagen==1.47.0

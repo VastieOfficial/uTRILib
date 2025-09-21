@@ -1,0 +1,8 @@
+/target
+.token.do-not-share
+/TRICACHE
+/prefetch
+/lists
+/playlistThumbs
+/__pycache__
+backup.json
