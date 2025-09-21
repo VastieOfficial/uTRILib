@@ -10,7 +10,7 @@ This tool is provided for personal, non-commercial use only. In Russia, personal
 1. Clone this repo somewhere
 2. Install Python 3.11
 3. `pip install -r requirements.txt` 
-4. Install & run (TRILib-Spotify)[https://github.com/VastieOfficial/TRILIB-Spotify] 
+4. Install & run [TRILib-Spotify](https://github.com/VastieOfficial/TRILIB-Spotify)
 5. Set enviveroment variables:
 
 | Variable         | Value                                                     
@@ -19,7 +19,7 @@ This tool is provided for personal, non-commercial use only. In Russia, personal
 | TRI_SPOTIFY_PORT | HTTP port (default 3500)                                  
 6. Authorize with the script:
 `python api.py`
-7. Save your data with (spotmybackup.com)[https://spotmybackup.com] to `backup.json`
+7. Save your data with [spotmybackup.com](https://spotmybackup.com) to `backup.json`
 8. `python parse.py` to parse all the tracks info
 9. `python download.py` to download the tracks
 10. `python rebuildM3U8.py` to rebuild your playlists with the TRILIB cache
